@@ -48,3 +48,27 @@ errorHandler:
     Debug.Print "Error #" & Err.Number & ": " & Err.Description
 
 End Function
+
+Function jxNow()
+    'Desc: My personal favorite date format
+    jxNow = Format(Now, "DD MMM YYYY")
+
+End Function
+Function getFilePath()
+
+    Set fDialog = Application.FileDialog(msoFileDialogFolderPicker)
+    
+    With fDialog
+        .AllowMultiSelect = True
+        .Title = "Select Folder to Output Source Code"
+        .show
+    End With
+    
+    If fDialog.SelectedItems.Count = 1 Then
+        getFilePath = fDialog.SelectedItems(1)
+    Else
+        getFilePath = False
+    End If
+    
+
+End Function

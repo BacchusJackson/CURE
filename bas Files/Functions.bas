@@ -175,19 +175,96 @@ errorHandler:
     
 End Function
 
-Function getLastSurveyID()
+Sub exportData()
     Dim db As Database
-    Dim rs As Recordset
-    
     Set db = CurrentDb
     
+    nDate = jxNow()
+    cSiteID = currentSiteID()
     
-    Set rs = db.OpenRecordset("readLastSurvey", dbOpenSnapshot)
+    fPath = CurrentProject.Path & "\" & nDate & " export\"
     
-    getLastSurveyID = rs.Fields(0)
+    'If there is no Directory, make one
+    If Len(Dir(fPath, vbDirectory)) = 0 Then
+        MkDir fPath
+    End If
     
-    rs.Close
-    db.Close
+    'set the location and file name for each file that will be exported
+    cstlocation1 = fPath & "Site " & cSiteID & "_" & nDate & " DirectCareEvents.csv"
+    cstlocation2 = fPath & "Site " & cSiteID & "_" & nDate & " Monthly Narative.csv"
+    cstlocation3 = fPath & "Site " & cSiteID & "_" & nDate & " nonpaitentCareEvents.csv"
+    cstlocation4 = fPath & "Site " & cSiteID & "_" & nDate & " Survey Answers.csv"
     
+    On Error GoTo errorHandler
+    '1 - Export as CSV
+    DoCmd.TransferText acExportDelim, , "tbl2_DirectCareEvents", cstlocation1, True
+    DoCmd.TransferText acExportDelim, , "tbl2_monthlyNaratives", cstlocation2, True
+    DoCmd.TransferText acExportDelim, , "tbl2_nonpatientCareEvents", cstlocation3, True
+    DoCmd.TransferText acExportDelim, , "tbl2_answerLog", cstlocation4, True
+    
+    '2 - Append to Archive
+    CurrentDb.Execute "appendDirectCare"
+    CurrentDb.Execute "appendMonthlyNaratives"
+    CurrentDb.Execute "appendNonpatientCare"
+    CurrentDb.Execute "appendAnswerLog"
+    
+    '3 - Delete from Event
+    CurrentDb.Execute "delDirectCare"
+    CurrentDb.Execute "delMonthlyNaratives"
+    CurrentDb.Execute "delNonpatientCare"
+    CurrentDb.Execute "delAnswerLog"
+    
+    MsgBox ("Successful Export!")
+    
+    Exit Sub
+    
+errorHandler:
 
+    MsgBox ("Unsuccessful Export...")
+    Debug.Print ("error " & Err.Number & ": " & Err.Description)
+    
+End Sub
+
+Sub importData()
+    'Description: Import data from CSV File
+    Set db = CurrentDb
+    
+    On Error GoTo errorHandler
+    
+    '1 - Import CSV to importEvents Table
+    DoCmd.TransferText acImportDelim, , "importEvents", selectFile(), True
+    '2 - Append to allEvents
+    db.Execute ("1_appendtoAllEvents")
+    '3 - Delete from importEvents Table
+    db.Execute ("2_deleteImportEvents")
+    
+    MsgBox ("Successful Import!")
+    Exit Sub
+    
+errorHandler:
+    
+    MsgBox ("unsuccessful Import...")
+    Debug.Print ("error " & Err.Number & ": " & Err.Description)
+    
+End Sub
+
+Function selectFile()
+    Dim fd As FileDialog
+    
+    Set fd = Application.FileDialog(msoFileDialogFilePicker)
+    
+    With fd
+        .AllowMultiSelect = False
+        If .show Then
+            selectFile = .SelectedItems(1)
+        Else
+            End
+        End If
+    End With
+    
+    Debug.Print selectFile
+    Set fd = Nothing
+    
 End Function
+
+
