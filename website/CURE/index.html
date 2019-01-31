@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+    <head>
+        <link rel="stylesheet" href="css/material.min.css">
+        <script src="css/material.min.js"> </script>
+        <title> C.U.R.E. </title>
+    </head>
+    <!-- uses googles jquery for faster loading -->
+    <body>
+        <header class="mdl-layout__header" style="height:130px;text-align:center;font-size:70px;padding-top:50px"> 
+            C.U.R.E.
+            <div style="font-size:20px;font-style:italic;letter-spacing:5px;padding-top:30px">
+                Client for Unified Record Entry
+            </div>
+        </header>
+        <!-- Simple header with fixed tabs. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                    mdl-layout--fixed-tabs">
+          <header class="mdl-layout__header">
+
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">New Entry</a>
+              <a href="#fixed-tab-2" class="mdl-layout__tab">Review</a>
+              <a href="#fixed-tab-3" class="mdl-layout__tab">Data Transfer</a>
+            </div>
+          </header>
+
+           <style>
+           .inputCard.mdl-card {
+               height:200px;
+               width:800px;
+               position: absolute;
+               left:30%;
+               top:5%;
+               background-color: #fff;
+           }
+
+           </style>
+            <main class="mdl-layout__content">
+                <!-- Tab One Content -->
+                <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+                    <div class="page-content">
+                        
+                        <form>
+                        <div class="inputCard mdl-card mdl-shadow--6dp" id="inputCard" style="text-align:center">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">New Entry</h2>
+                            </div>
+
+                            <div id:"userSelect">
+                                <span>
+                                    Mental Health
+                                    <div>
+                                        <input type="radio" name="mHealth" value="MH_Provider"> Provider <br>
+                                        <input type="radio" name="mHealth" value="MH_Technician"> Technician <br>
+                                    </div>
+                                </span>
+                                <span>test2</span>
+                            </div>
+
+                            <div class="mdl-card__supporting-text">
+                                This is supporting text
+                            </div>
+                             
+                            <div class="mdl-card__actions mdl-card--border">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="width:300px;font-size:30px"> Submit </button>
+                            </div>
+                        </div>
+                        </form>
+                </section>
+                
+                <!-- Tab Two Content -->
+                <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+                    <div class="page-content">
+                        <!-- Your content goes here -->
+                    </div>
+                </section>
+                
+                <!-- Tab Three Content -->
+                <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+                    <div class="page-content">
+                        <!-- Your content goes here -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+    <!-- SCRIPTS --->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    <script> window.jQuery || document.write('<script src="js/jquery-3.3.1.min.js"> <\/script>') </script>
+    <script src="js/add-content.js"> </script>
+
+    </body>
+
+
+</html>
