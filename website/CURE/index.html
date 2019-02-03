@@ -2,145 +2,74 @@
 <html lang="en-US">
 <html>
     <head>
-        <link rel="stylesheet" href="css/material.min.css">
-        <link rel="stylesheet" href="css/customStyles.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <script src="css/material.min.js"> </script>
         <title> C.U.R.E. </title>
     </head>
     <!-- uses googles jquery for faster loading -->
-    <body>
-        <header class="mdl-layout__header" style="height:130px;text-align:center;font-size:70px;padding-top:50px"> 
-            C.U.R.E.
-            <div style="font-size:20px; font-style:italic;padding-top:30px">
-                Client for Unified Record Entry
+    <body class="grey darken-4">
+
+            <div class="nav-wrapper deep-purple darken-4 center white-text" Style="padding:1px; margin-bottom:5px;">
+                <h1 style="margin-top:10px"><a href="#" class="brand-logo center white-text">C.U.R.E</a></h1>
+                <p>Client For Unified Record Entry</p>
+
             </div>
-        </header>
-        <!-- Simple header with fixed tabs. -->
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-                    mdl-layout--fixed-tabs">
-          <header class="mdl-layout__header">
 
-            <!-- Tabs -->
-            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">New Entry</a>
-              <a href="#fixed-tab-2" class="mdl-layout__tab">Review</a>
-              <a href="#fixed-tab-3" class="mdl-layout__tab">Data Transfer</a>
-            </div>
-          </header>
-           <!-- Card Style for the data entry -->
-           <style>
-           .inputCard.mdl-card {
-            height:700px;
-            width:800px;
-            margin-left:auto;
-            margin-right:auto;
-            margin-top:3%;
-            background-color: #fff;
-           }
-           .tblUserSelect {
-            text-align:left;
-            width:50%;
-            margin-left: auto; 
-            margin-right: auto;
-            margin-top: 2%;
-
-           }
-           
-
-           </style>
-            <main class="mdl-layout__content">
-                <!-- Tab One Content -->
-                <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-                    <div class="page-content">
-                        <!-- input form -->
-                        <form>
-                        <div class="inputCard mdl-card mdl-shadow--4dp" style="padding-left:5%;padding-right:5%">
-                            <div>
-                                <h3>Langley Air Force Base</h3>
-                                <a id="changeSite" href="#">Change Site</a>
-                            </div>
-                            <div>
-                                <table class="tblUserSelect">
-                                        <tr>
-                                            <th> Mental Health </th>
-                                            <th> Physical Medicine </th>
-                                        </tr>
-                                        <tr>
-                                            <td> <input type="radio" class="mdl-radio__button" name="userSelect" value="MH_Provider"> Provider </td>
-                                            <td> <input type="radio" class="mdl-radio__button" name="userSelect" value="PH_Provider"> Provider </td>
-                                        </tr>
-                                        <tr>
-                                            <td> <input type="radio" class="mdl-radio__button" name="userSelect" value="MH_Technician"> Technician </td>
-                                            <td> <input type="radio" class="mdl-radio__button" name="userSelect" value="PH_Technician"> Technician - 1 </td>
-                                        </tr>
-                                        <tr>
-                                            <td> </td>
-                                            <td > <input type="radio" class="mdl-radio__button" name="userSelect" value="PH_Technician"> Technician - 2 </td>
-                                        </tr>
-                                    </table>
-                            </div>
-                            <div class="jx-eventForm">
-                                    <p style="margin-bottom:1%;text-align:left;font-size:20px">Category</p>
-                                    <select name="Activity" id="categoryMenu" style="width:100%;font-size:50px">
-                                            <option value="option 1">option 1</option>
-                                            <option value="option 2">option 2</option>
-                                            <option value="option 3">option 3</option>
-                                    </select>
-                                </div>
-                            <div class="jx-eventForm">
-                                <p style="margin-bottom:1%;text-align:left;font-size:20px">Activity</p>
-                                <select name="Activity" id="activityMenu" style="width:100%;font-size:50px">
-                                        <option value="option 1">option 1</option>
-                                        <option value="option 2">option 2</option>
-                                        <option value="option 3">option 3</option>
-                                </select>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label jx-eventForm">
-                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="count1">
-                                <label class="mdl-textfield__label" for="count1">Hours</label>
-                                <span class="mdl-textfield__error">Only numbers please...</span>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label jx-eventForm">
-                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="count2">
-                                <label class="mdl-textfield__label" for="count2">Members Engaged</label>
-                                <span class="mdl-textfield__error">Only numbers please...</span>
-                            </div>
-
-                            <div>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-                                Style="width:100%; margin-top:10%;">
-                                    SUBMIT
-                                </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col s8 push-s2">
+                        <div class="card">
+                            <div class="card-content black-text">
+                                <span class="card-title"><h3>Langley Air Force Base</h3></span>
+                                    <div class="switch">
+                                        <b class="blue-text" id="S01">Mental Health</b>
+                                        <label>
+                                            <input type="checkbox">
+                                            <span class="lever" id="clinicSwitch"></span>
+                                        </label>
+                                        <b id="S02">Physical Medicine</b>
+                                    </div>
+                                    <div class="input-field" id="categorySelect" style="margin-top: 40px;">
+                                        <select>
+                                            <option value="">Select One</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                        </select>
+                                        <label for="#categorySelect">Category</label>
+                                    </div>
+                                    <div class="input-field" id="activitySelect">
+                                        <select>
+                                            <option value="">Select One</option>
+                                            <option value="1">Activity 1</option>
+                                            <option value="2">Activity 2</option>
+                                            <option value="3">Activity 3</option>
+                                            <option value="4">Activity 4</option>
+                                        </select>
+                                        <label for="#activitySelect">Activity</label>
+                                    </div>
+                                    <div>
+                                            <label for="#dateInput">Date</label>
+                                            <input type="text" class="datepicker" id="dateInput" value="Feb 01, 2019"></input>
+                                            
+                                    </div>
+                                    <div class="card-action center" style="margin-top:40px">
+                                        <a id="submitBtn" class="wave-effect btn red blue hoverable" style="width:70%">Submit</a>
+                                    </div>
                             </div>
                         </div>
+                    </div>
 
+                </div>
+            <!-- End Container -->
+            </div>
 
-                        </form>
-                        
-                    </div>
-                </section>
-                
-                <!-- Tab Two Content -->
-                <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-                    <div class="page-content">
-                        <!-- Your content goes here -->
-                    </div>
-                </section>
-                
-                <!-- Tab Three Content -->
-                <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-                    <div class="page-content">
-                        <!-- Your content goes here -->
-                    </div>
-                </section>
-            </main>
-        </div>
-        
 
     <!-- SCRIPTS --->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
     <script> window.jQuery || document.write('<script src="js/jquery-3.3.1.min.js"> <\/script>') </script>
+    <script src="js/materialize.min.js"></script>
     <script src="js/add-content.js"> </script>
 
     </body>
